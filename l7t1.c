@@ -19,7 +19,11 @@ int main() {
 
 // This function populates a given matrix with random integers
 void createMatrix(int matrix[SIZE][SIZE]) {
-    // TODO
+    for (int i = 0; i < SIZE; i ++) {
+        for (int j = 0; j < SIZE; j++) {
+            matrix[i][j] = rand() % 10;
+        }
+    }
 }
 
 // This function prints a given matrix to the screen
