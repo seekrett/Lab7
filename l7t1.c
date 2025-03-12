@@ -28,7 +28,12 @@ void createMatrix(int matrix[SIZE][SIZE]) {
 
 // This function prints a given matrix to the screen
 void printMatrix(int matrix[SIZE][SIZE]) {
-    // TODO
+    for (int i = 0; i < SIZE; i ++) {
+        for (int j = 0; j < SIZE; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 // This function compares the 2 matrices.
