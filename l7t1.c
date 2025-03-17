@@ -39,5 +39,12 @@ void printMatrix(int matrix[SIZE][SIZE]) {
 // This function compares the 2 matrices.
 // Returns 1 if equal, returns 0 if unequal
 int compareMatrices(int matrix1[SIZE][SIZE], int matrix2[SIZE][SIZE]) {
-    // TODO
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (matrix1[i][j] != matrix2[i][j]) {
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
