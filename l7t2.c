@@ -13,7 +13,11 @@ void multiplyMatrices(int size, double A[size][size], double B[size][size], doub
 
 // main function
 int main() {
-    //TODO
+    // variable declarations
+    int sizes[] = {20, 40, 80, 160, 320, 640, 1280};        // matrix sizes
+    int numOfSizes = sizeof(sizes) / sizeof(sizes[0]);      // total num of sizes 
+    int numOfOrders = 6;                                    // num of multiplication orders
+    
 }
 
 // This function populates random elements in a matrix of a given size.
