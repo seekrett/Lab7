@@ -8,8 +8,8 @@
 #include <math.h>
 
 // function declarations
-void createMatrix(int size, double matrix[size][size]);
-void multiplyMatrices(int size, double A[size][size], double B[size][size], double C[size][size], int order);
+void createMatrix(int size, double **matrix);
+void multiplyMatrices(int size, double **A, double **B, double **C, int order);
 
 // main function
 int main() {
@@ -22,7 +22,16 @@ int main() {
     for (int i = 0; i < numOfSizes; i++) {
         // local variable declarations
         int size = sizes[i];                                // tracks current size dealing with
-        double A[size][size], B[size][size], C[size][size]; // initialize each matrix
+
+        // initiallize each matrix via malloc
+        double **A = (double **)malloc(size * sizeof(double *));
+        double **B = (double **)malloc(size * sizeof(double *));
+        double **C = (double **)malloc(size * sizeof(double *));
+        for (int i = 0; i < size; i++) {
+            A[i] = (double *)malloc(size * sizeof(double));
+            B[i] = (double *)malloc(size * sizeof(double));
+            C[i] = (double *)malloc(size * sizeof(double));
+        }
 
         // create a matrix
         createMatrix(size, A);
@@ -63,11 +72,23 @@ int main() {
                 break;
             }
         }
+
+        // free memory
+        for (int j = 0; j < size; j++) {
+            // for each row
+            free(A[j]);
+            free(B[j]);
+            free(C[j]);
+        }
+        // for each array of pointers
+        free(A);
+        free(B);
+        free(C);
     }
 }
 
 // This function populates random elements in a matrix of a given size.
-void createMatrix(int size, double matrix[size][size]) {
+void createMatrix(int size, double **matrix) {
     for (int i = 0; i < size; i ++) {
         for (int j = 0; j < size; j++) {
             matrix[i][j] = (double) rand() / RAND_MAX;
@@ -76,7 +97,7 @@ void createMatrix(int size, double matrix[size][size]) {
 }
 
 // This function multiplies two matrices of the same size in differing orders.
-void multiplyMatrices(int size, double A[size][size], double B[size][size], double C[size][size], int order) {
+void multiplyMatrices(int size, double **A, double **B, double **C, int order) {
     // set product matrix C to 0
     for (int i = 0; i < size; i ++) {
         for (int j = 0; j < size; j++) {
